@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Tourism License Application - Government of Madhya Pradesh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="logo.png" alt="MP Government Logo" class="logo">
+                    <div class="header-text">
+                        <h1>Madhya Pradesh Tourism Board</h1>
+                        <h2>Water Tourism License Application</h2>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Form -->
+        <main class="main-content">
+            <form id="waterTourismForm" class="application-form">
+                <!-- Section 1: Applicant Details -->
+                <section class="form-section">
+                    <h3 class="section-title">Section 1: Applicant Details</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="applicantName">Applicant Name *</label>
+                            <input type="text" id="applicantName" name="applicantName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address *</label>
+                            <textarea id="address" name="address" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactNumber">Contact Number *</label>
+                            <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{10}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email ID *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="occupation">Occupation *</label>
+                            <input type="text" id="occupation" name="occupation" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="panNo">PAN No. *</label>
+                            <input type="text" id="panNo" name="panNo" pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="aadhaarGstn">Aadhaar/GSTN No. *</label>
+                            <input type="text" id="aadhaarGstn" name="aadhaarGstn" required>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 2: Water Body Details -->
+                <section class="form-section">
+                    <h3 class="section-title">Section 2: Water Body Details</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="applicationDate">Date of Application *</label>
+                            <input type="date" id="applicationDate" name="applicationDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="areaOfWaterBody">Area of Water Body *</label>
+                            <input type="text" id="areaOfWaterBody" name="areaOfWaterBody" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="waterBody">Water Body *</label>
+                            <select id="waterBody" name="waterBody" required>
+                                <option value="">Select Water Body</option>
+                                <option value="Indira Sagar Dam">1. Indira Sagar Dam (including Narmada and other tributaries)</option>
+                                <option value="Omkareshwar Dam">2. Omkareshwar dam (Narmada and other tributaries)</option>
+                                <option value="Tawa Dam">3. Tawa dam (including Tawa, Denawa and other tributaries)</option>
+                                <option value="Bargi Dam">4. Bargi dam (including Narmada and other tributaries)</option>
+                                <option value="Bansagar Dam">5. Bansagar Dam (including Soun and other tributaries)</option>
+                                <option value="Gandhi Sagar Dam">6. Gandhi Sagar dam (including Chambal and other tributaries)</option>
+                                <option value="Manikheda Dam">7. Manikheda dam (including Sindh and other tributaries)</option>
+                                <option value="Halali Dam">8. Halali Dam (including Halali and other tributaries)</option>
+                                <option value="Chandpatha Dam">9. Chandpatha Dam (District Shivpuri)</option>
+                                <option value="Betwa River Orchha">10. Betwa river flowing near Orchha</option>
+                                <option value="Chaural Dam">11. Chaural dam (including Chaural and other tributaries)</option>
+                                <option value="Gangau Dam">12. Gangau dam (including Ken and other tributaries)</option>
+                                <option value="Barna Dam">13. Barna dam (including Barna and other tributaries)</option>
+                                <option value="Mann Dam">14. Mann Dam (Dhar)</option>
+                                <option value="Hathni River">15. Hathni river and its tributaries</option>
+                                <option value="Dholabad Water Body">16. Dholabad Water Body, Ratlam (Jamad River including its tributaries)</option>
+                                <option value="Tighara Water Body">17. Tighara Water Body, Gwalior</option>
+                                <option value="Kishanpura Water Body">18. Kishanpura Water Body, Betma, Indore</option>
+                                <option value="Govindgarh Water Body">19. Govindgarh Water body, District Rewa</option>
+                                <option value="Kolar Water Body">20. Kolar Water Body, District Bhopal</option>
+                                <option value="Machagora Dam">21. Machagora Dam, District Chhindwada</option>
+                                <option value="Sapna Dam">22. Sapna Dam, District Betul</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3: Activities -->
+                <section class="form-section">
+                    <h3 class="section-title">Section 3: Activities (with Fee Calculation)</h3>
+                    <div class="activities-grid">
+                        <div class="activity-item">
+                            <label class="activity-label">
+                                <input type="checkbox" name="activities" value="Motor Boat" onchange="calculateFee()">
+                                Motor Boat
+                            </label>
+                            <input type="number" name="motorBoatQty" min="1" placeholder="Qty" onchange="calculateFee()">
+                        </div>
+                        <div class="activity-item">
+                            <label class="activity-label">
+                                <input type="checkbox" name="activities" value="Cruise" onchange="calculateFee()">
+                                Cruise
+                            </label>
+                            <input type="number" name="cruiseQty" min="1" placeholder="Qty" onchange="calculateFee()">
+                        </div>
+                        <div class="activity-item">
+                            <label class="activity-label">
+                                <input type="checkbox" name="activities" value="House Boat" onchange="calculateFee()">
+                                House Boat
+                            </label>
+                            <input type="number" name="houseBoatQty" min="1" placeholder="Qty" onchange="calculateFee()">
+                        </div>
+                        <div class="activity-item">
+                            <label class="activity-label">
+                                <input type="checkbox" name="activities" value="Water Scooter" onchange="calculateFee()">
+                                Water Scooter
+                            </label>
+                            <input type="number" name="waterScooterQty" min="1" placeholder="Qty" onchange="calculateFee()">
+                        </div>
+                        <div class="activity-item">
+                            <label class="activity-label">
+                                <input type="checkbox" name="activities" value="Water Parasailing" onchange="calculateFee()">
+                                Water Parasailing
+                            </label>
+                            <input type="number" name="waterParasailingQty" min="1" placeholder="Qty" onchange="calculateFee()">
+                        </div>
+                        <div class="activity-item">
+                            <label class="activity-label">
+                                <input type="checkbox" name="activities" value="Mini Cruise" onchange="calculateFee()">
+                                Mini Cruise
+                            </label>
+                            <input type="number" name="miniCruiseQty" min="1" placeholder="Qty" onchange="calculateFee()">
+                        </div>
+                        <div class="activity-item">
+                            <label class="activity-label">
+                                <input type="checkbox" name="activities" value="Paddle Boat" onchange="calculateFee()">
+                                Paddle Boat
+                            </label>
+                            <input type="number" name="paddleBoatQty" min="1" placeholder="Qty" onchange="calculateFee()">
+                        </div>
+                        <div class="activity-item">
+                            <label class="activity-label">
+                                <input type="checkbox" name="activities" value="Zorbing" onchange="calculateFee()">
+                                Zorbing
+                            </label>
+                            <input type="number" name="zorbingQty" min="1" placeholder="Qty" onchange="calculateFee()">
+                        </div>
+                        <div class="activity-item">
+                            <label class="activity-label">
+                                <input type="checkbox" name="activities" value="Banana Ride" onchange="calculateFee()">
+                                Banana Ride
+                            </label>
+                            <input type="number" name="bananaRideQty" min="1" placeholder="Qty" onchange="calculateFee()">
+                        </div>
+                        <div class="activity-item">
+                            <label class="activity-label">
+                                <input type="checkbox" name="activities" value="Bumper Ride" onchange="calculateFee()">
+                                Bumper Ride
+                            </label>
+                            <input type="number" name="bumperRideQty" min="1" placeholder="Qty" onchange="calculateFee()">
+                        </div>
+                        <div class="activity-item">
+                            <label class="activity-label">
+                                <input type="checkbox" name="activities" value="Parasail" onchange="calculateFee()">
+                                Parasail
+                            </label>
+                            <input type="number" name="parasailQty" min="1" placeholder="Qty" onchange="calculateFee()">
+                        </div>
+                    </div>
+                    <div class="fee-calculation">
+                        <h4>Total Fee Calculation:</h4>
+                        <p>Base Fee: ₹2000 + 18% GST = ₹2360 per activity per quantity</p>
+                        <div class="total-fee">
+                            <strong>Total Amount: ₹<span id="totalFee">0</span></strong>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4: Payment Method -->
+                <section class="form-section">
+                    <h3 class="section-title">Section 4: Payment Method</h3>
+                    <div class="payment-methods">
+                        <label class="radio-label">
+                            <input type="radio" name="paymentMethod" value="DD" onchange="togglePaymentFields()">
+                            Demand Draft (DD)
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="paymentMethod" value="UPI" onchange="togglePaymentFields()">
+                            UPI
+                        </label>
+                    </div>
+                    
+                    <div id="ddFields" class="payment-fields" style="display: none;">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="ddNumber">DD Number</label>
+                                <input type="text" id="ddNumber" name="ddNumber">
+                            </div>
+                            <div class="form-group">
+                                <label for="ddBankName">Bank Name</label>
+                                <input type="text" id="ddBankName" name="ddBankName">
+                            </div>
+                            <div class="form-group">
+                                <label for="ddBranchName">Branch Name</label>
+                                <input type="text" id="ddBranchName" name="ddBranchName">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="upiFields" class="payment-fields" style="display: none;">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="upiTransactionNo">UPI Transaction No.</label>
+                                <input type="text" id="upiTransactionNo" name="upiTransactionNo">
+                            </div>
+                            <div class="form-group">
+                                <label for="utrNo">UTR No.</label>
+                                <input type="text" id="utrNo" name="utrNo">
+                            </div>
+                            <div class="form-group">
+                                <label for="transactionDate">Date of Transaction</label>
+                                <input type="date" id="transactionDate" name="transactionDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="upiBankName">Bank Name</label>
+                                <input type="text" id="upiBankName" name="upiBankName">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 5: Declaration -->
+                <section class="form-section">
+                    <h3 class="section-title">Section 5: Declaration</h3>
+                    <div class="declaration">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="declaration" name="declaration" required>
+                            I hereby declare that the above details are true and correct to the best of my knowledge.
+                        </label>
+                    </div>
+                </section>
+
+                <!-- Submit Button -->
+                <div class="submit-section">
+                    <button type="submit" class="submit-btn">Submit Application</button>
+                </div>
+            </form>
+        </main>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                <p>Submitting your application...</p>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div id="successMessage" class="success-message" style="display: none;">
+            <div class="success-content">
+                <h3>Application Submitted Successfully!</h3>
+                <p>Your water tourism license application has been submitted. You will receive a confirmation email shortly.</p>
+                <button onclick="resetForm()" class="btn-secondary">Submit Another Application</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
