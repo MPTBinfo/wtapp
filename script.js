@@ -1,3 +1,4 @@
+
 // Global variable
 let totalFeeAmount = 0;
 
@@ -122,7 +123,7 @@ function collectFormData() {
   return data;
 }
 
-// Submit to Google Apps Script (GET with PDF download)
+// Submit to Google Apps Script (GET with manual JSON parse)
 function submitToGoogleScript(data) {
   const scriptURL = "https://script.google.com/macros/s/AKfycbwsol9JXR2E1YuGUhKQ_LQXqbHm6kD78uIvZBE8nqfG7olGZi8b34wMk9iA7qQopXzu/exec";
   const encoded = encodeURIComponent(JSON.stringify(data));
@@ -130,38 +131,14 @@ function submitToGoogleScript(data) {
   fetch(`${scriptURL}?data=${encoded}`)
     .then((response) => response.text())
     .then((text) => {
-      const result = JSON.parse(text);
-      document.getElementById("loadingOverlay").style.display = "none";
+      const result = JSON.parse(text); // this avoids the CORS+MIME issue
+      console.log("Success:", result);
 
       if (result.status === "success") {
-        const link = document.createElement("a");
-        link.href = `data:application/pdf;base64,${result.pdfBase64}`;
-        link.download = result.filename || "Water_Tourism_License.pdf";
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
+        document.getElementById("loadingOverlay").style.display = "none";
         document.getElementById("successMessage").style.display = "flex";
       } else {
-        alert("Submission failed: " + result.message);
-      }
-    })
-    .catch((error) => {
-      document.getElementById("loadingOverlay").style.display = "none";
-      alert("Network or server error: " + error.message);
-    });
-}
-        // Trigger PDF download
-        const link = document.createElement("a");
-        link.href = `data:application/pdf;base64,${result.pdfBase64}`;
-        link.download = result.filename || "Water_Tourism_Application.pdf";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // Show confirmation
-        document.getElementById("successMessage").style.display = "flex";
-      } else {
-        alert("❌ Submission failed: " + result.message);
+        throw new Error(result.message);
       }
     })
     .catch((error) => {
