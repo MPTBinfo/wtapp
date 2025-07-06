@@ -131,11 +131,25 @@ function submitToGoogleScript(data) {
     .then((response) => response.text())
     .then((text) => {
       const result = JSON.parse(text);
-      console.log("Success:", result);
-
       document.getElementById("loadingOverlay").style.display = "none";
 
       if (result.status === "success") {
+        const link = document.createElement("a");
+        link.href = `data:application/pdf;base64,${result.pdfBase64}`;
+        link.download = result.filename || "Water_Tourism_License.pdf";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        document.getElementById("successMessage").style.display = "flex";
+      } else {
+        alert("Submission failed: " + result.message);
+      }
+    })
+    .catch((error) => {
+      document.getElementById("loadingOverlay").style.display = "none";
+      alert("Network or server error: " + error.message);
+    });
+}
         // Trigger PDF download
         const link = document.createElement("a");
         link.href = `data:application/pdf;base64,${result.pdfBase64}`;
