@@ -483,7 +483,7 @@ export default function WaterTourismApplication() {
       }
 
       const scriptURL =
-        "https://script.google.com/macros/s/AKfycbwsol9JXR2E1YuGUhKQ_LQXqbHm6kD78uIvZBE8nqfG7olGZi8b34wMk9iA7qQopXzu/exec"
+        "https://script.google.com/macros/s/AKfycbz_fI90oFjlAGl7adIIvf9vwHu9SegVBFjDIHEnJjH6mC_HNsMJitj0_u1pQK8gqDLspA/exec"
 
       // Send as form data to avoid JSON parsing issues
       const formDataToSend = new FormData()
