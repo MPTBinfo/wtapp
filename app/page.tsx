@@ -211,7 +211,7 @@ export default function WaterTourismApplication() {
     doc.setFont("helvetica", "bold")
     doc.text("MADHYA PRADESH TOURISM BOARD", 105, 15, { align: "center" })
     doc.setFontSize(10)
-    doc.text("Water Tourism License Application", 105, 25, { align: "center" })
+    doc.text("Water Tourism Permission Application", 105, 25, { align: "center" })
 
     // Reset text color to black
     doc.setTextColor(0, 0, 0)
@@ -424,7 +424,7 @@ export default function WaterTourismApplication() {
     doc.rect(0, 285, 210, 12, "F")
     doc.setTextColor(255, 255, 255)
     doc.setFontSize(6)
-    doc.text("MP Tourism Board - Water Tourism License", 105, 292, { align: "center" })
+    doc.text("MP Tourism Board - Water Tourism Permission", 105, 292, { align: "center" })
 
     return doc
   }
@@ -455,7 +455,7 @@ export default function WaterTourismApplication() {
 
       // Generate PDF for download
       const pdfDoc = await generatePDF(submissionData)
-      pdfDoc.save(`Water_Tourism_License_${submissionData.applicantName?.replace(/\s+/g, "_")}_${Date.now()}.pdf`)
+      pdfDoc.save(`Water_Tourism_Permission_${submissionData.applicantName?.replace(/\s+/g, "_")}_${Date.now()}.pdf`)
 
       // Send only essential data to avoid corruption - NO PDF in email
       const emailData = {
@@ -501,7 +501,7 @@ export default function WaterTourismApplication() {
           body: formDataToSend,
           mode: "no-cors",
         })
-        console.log("Email sent successfully")
+        console.info("Submission request dispatched; no-cors mode cannot verify server receipt.")
       } catch (netErr) {
         console.warn("Email sending failed:", netErr)
         // Continue with success popup even if email fails
@@ -509,10 +509,11 @@ export default function WaterTourismApplication() {
 
       // Show success popup
       const activityList = submissionData.activities?.join(", ") || "selected activities"
-      const successMessage = `You have successfully applied for your ${activityList}. Please contact MPTB at 8817369119 or investinwb.mptb@mp.gov.in for further proceedings.`
+      const successMessage = `Your application PDF has been generated for ${activityList}. The online submission request was sent, but this browser cannot verify that MPTB received or recorded it. Please retain the downloaded PDF and contact MPTB at 8817369119 or investinwb.mptb@mp.gov.in to confirm the next steps.`
 
       setSuccessMessage(successMessage)
       setShowSuccessPopup(true)
+      setIsSubmitting(false)
     } catch (error) {
       console.error("Submission Error:", error)
       setIsSubmitting(false)
