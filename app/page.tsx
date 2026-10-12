@@ -495,12 +495,14 @@ export default function WaterTourismApplication() {
         }
       })
 
+      let submissionRequestSent = false
       try {
         await fetch(scriptURL, {
           method: "POST",
           body: formDataToSend,
           mode: "no-cors",
         })
+        submissionRequestSent = true
         console.info("Submission request dispatched; no-cors mode cannot verify server receipt.")
       } catch (netErr) {
         console.warn("Email sending failed:", netErr)
@@ -509,7 +511,10 @@ export default function WaterTourismApplication() {
 
       // Show success popup
       const activityList = submissionData.activities?.join(", ") || "selected activities"
-      const successMessage = `Your application PDF has been generated for ${activityList}. The online submission request was sent, but this browser cannot verify that MPTB received or recorded it. Please retain the downloaded PDF and contact MPTB at 8817369119 or investinwb.mptb@mp.gov.in to confirm the next steps.`
+      const submissionStatus = submissionRequestSent
+        ? "The online submission request was sent, but this browser cannot verify that MPTB received or recorded it."
+        : "The online submission request could not be sent from this browser."
+      const successMessage = `Your application PDF has been generated for ${activityList}. ${submissionStatus} Please retain the downloaded PDF and contact MPTB at 8817369119 or investinwb.mptb@mp.gov.in to confirm the next steps.`
 
       setSuccessMessage(successMessage)
       setShowSuccessPopup(true)
@@ -560,7 +565,7 @@ export default function WaterTourismApplication() {
             <img src="/logo.png" alt="MP Government Logo" className="w-20 h-20 bg-white rounded-full p-1" />
             <div className="text-center">
               <h1 className="text-3xl font-bold mb-2">Madhya Pradesh Tourism Board</h1>
-              <h2 className="text-xl font-medium opacity-90">Water Tourism License Application</h2>
+              <h2 className="text-xl font-medium opacity-90">Water Tourism Permission Application</h2>
             </div>
           </div>
           <Button
