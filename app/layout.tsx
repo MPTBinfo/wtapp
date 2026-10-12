@@ -6,9 +6,8 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Water Tourism License Application - MP Tourism Board",
-  description: "Apply for Water Tourism License in Madhya Pradesh",
-    generator: 'v0.dev'
+  title: "Water Tourism Permission Application - MP Tourism Board",
+  description: "Prepare a water tourism permission application for Madhya Pradesh. Download the application PDF and confirm submission status with MPTB.",
 }
 
 export default function RootLayout({
